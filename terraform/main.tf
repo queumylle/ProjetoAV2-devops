@@ -16,6 +16,10 @@ provider "aiven" {
   api_token = var.aiven_api_token
 }
 
+data "aiven_project" "this" {
+  project = var.aiven_project
+}
+
 resource "aiven_pg" "dashboard_db" {
   project                 = var.aiven_project
   cloud_name              = var.cloud_name
