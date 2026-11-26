@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — Temperatura nas Capitais (Open-Meteo)</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>🌡️ Temperatura Máxima nas Capitais</h1>
+    <p class="subtitle">
+      Dados abertos do Open-Meteo · cache renovado a cada {{ data.cache_hours }}h ·
+      persistidos em PostgreSQL gerenciado pela Aiven.io
+    </p>
+  </header>
+
+  <section class="cards">
+    {% for ind in data.indicators %}
+    <div class="card">
+      <span class="label">{{ ind.name }}</span>
+      <span class="value">
+        {{ ind.latest_value if ind.latest_value is not none else "—" }}
+        <span class="unit">{{ ind.unit }}</span>
+      </span>
+      <span class="meta">
+        {% if ind.latest_date %}ref. {{ ind.latest_date }}{% else %}sem dados ainda{% endif %}
+        {% if ind.delta is not none %}
+          · <span class="{{ 'up' if ind.delta > 0 else ('down' if ind.delta < 0 else '') }}">
+            {{ "%+.1f"|format(ind.delta) }}
+          </span>
+        {% endif %}
+      </span>
+    </div>
+    {% endfor %}
+    <div class="card muted">
+      <span class="label">Acessos ao dashboard</span>
+      <span class="value">{{ data.total_visits }}</span>
+      <span class="meta">uptime: {{ data.uptime_seconds }}s</span>
+    </div>
+  </section>
+
+  <section class="chart-container">
+    <h2>Temperatura máxima diária (últimos {{ data.indicators[0].labels|length }} dias)</h2>
+    <canvas id="indicatorsChart" height="90"></canvas>
+  </section>
+
+  <footer>
+    <small>
+      Atualiza automaticamente a cada 60s · Fonte:
+      <a href="https://open-meteo.com/" target="_blank" rel="noopener">open-meteo.com</a>
+      · <a href="/api/indicators">/api/indicators</a> · <a href="/healthz">/healthz</a>
+    </small>
+  </footer>
+
+  <script>
+    const indicators = {{ data.indicators | tojson }};
+    const colors = ["#4f46e5", "#16a34a", "#dc2626", "#f59e0b", "#06b6d4"];
+
+    // Todas as cidades usam a mesma unidade (°C), então um único eixo Y basta.
+    const datasets = indicators.map((ind, i) => ({
+      label: ind.name,
+      data: ind.values,
+      borderColor: colors[i % colors.length],
+      backgroundColor: colors[i % colors.length] + "26",
+      tension: 0.3,
+      fill: false
+    }));
+
+    new Chart(document.getElementById('indicatorsChart'), {
+      type: 'line',
+      data: {
+        labels: indicators[0] ? indicators[0].labels : [],
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: { legend: { display: true, position: 'bottom' } },
+        scales: { y: { beginAtZero: false, title: { display: true, text: "°C" } } }
+      }
+    });
+
+    setTimeout(() => location.reload(), 60000);
+  </script>
+</body>
+</html>
