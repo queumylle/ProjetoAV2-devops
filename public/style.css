@@ -1,8 +1,8 @@
 * { box-sizing: border-box; }
 body {
   font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: #0f1220;
-  color: #e6e6f0;
+  background: #0f201d;
+  color: #e6f0ed;
   margin: 0;
   padding: 2rem;
 }
@@ -14,17 +14,19 @@ header h1 { margin-bottom: 0.2rem; }
   gap: 1rem;
   margin: 1.5rem 0;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .card {
-  background: #1a1e33;
-  border: 1px solid #2c2f52;
+  background: #1a332c;
+  border: 1px solid #2c5245;
   border-radius: 12px;
   padding: 1rem 1.5rem;
   min-width: 180px;
   display: flex;
   flex-direction: column;
 }
-.card .label { color: #9a9ac0; font-size: 0.85rem; }
+.card .label { color: #9ac0ad; font-size: 0.85rem; }
 .card .value { font-size: 1.8rem; font-weight: 700; color: #a5b4fc; }
 .card .value.small { font-size: 1rem; }
 .card .unit { font-size: 1rem; font-weight: 500; color: #9a9ac0; margin-left: 0.3rem; }
