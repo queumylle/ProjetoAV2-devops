@@ -56,7 +56,7 @@
 
   <script>
     const indicators = {{ data.indicators | tojson }};
-    const colors = ["#4f46e5", "#16a34a", "#dc2626", "#f59e0b", "#06b6d4"];
+    const colors = ["#9f48ec","#4f46e5", "#16a34a", "#dc2626", "#f59e0b", "#06b6d4"];
 
     // Todas as cidades usam a mesma unidade (°C), então um único eixo Y basta.
     const datasets = indicators.map((ind, i) => ({
