@@ -21,7 +21,7 @@ DB_URL = os.environ.get("AIVEN_DB_URL")
 # coluna series_code da tabela. Dados: Open-Meteo (aberto, sem chave de API).
 # Documentação: https://open-meteo.com/en/docs
 SERIES = {
-    6: {"name": "Bahia (Salvador)", "unit": "°C","casas": 1, "lat": -12,97, "lon": -38.51},
+    6: {"name": "Bahia (Salvador)", "unit": "°C","casas": 1, "lat": -12.97, "lon": -38.51},
     1: {"name": "São Paulo",      "unit": "°C", "casas": 1, "lat": -23.55, "lon": -46.63},
     2: {"name": "Rio de Janeiro", "unit": "°C", "casas": 1, "lat": -22.91, "lon": -43.17},
     3: {"name": "Brasília",       "unit": "°C", "casas": 1, "lat": -15.79, "lon": -47.88},
