@@ -1,4 +1,9 @@
 * { box-sizing: border-box; }
+
+.didact-gothic-regular {
+  font-family: "Didact Gothic", sans-serif;
+  font-style: normal;
+}
 body {
   font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
   background: #0f201d;
