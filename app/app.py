@@ -21,6 +21,8 @@ import datetime
 from flask import Flask, render_template, jsonify
 import requests
 
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bcb_client as bcb
 
 app = Flask(__name__)
