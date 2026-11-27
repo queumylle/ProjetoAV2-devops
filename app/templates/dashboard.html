@@ -77,7 +77,19 @@
       options: {
         responsive: true,
         interaction: { mode: 'index', intersect: false },
-        plugins: { legend: { display: true, position: 'bottom' } },
+        
+        plugins: { 
+          legend: { display: true, position: 'bottom' },
+          tooltip: { 
+            padding: 14,
+            bodySpacing: 10,
+            titleMarginBottom: 12,
+            boxPadding: 6,
+            bodyFont: { size: 14},
+            titleFont: { size: 14}
+          }
+        },
+        
         scales: { y: { beginAtZero: false, title: { display: true, text: "°C" } } }
       }
     });
