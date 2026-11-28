@@ -2,14 +2,14 @@
 
 * { box-sizing: border-box; }
 body {
-  font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: "Didact Gothic", -apple-system, "Segoe UI", Roboto, sans-serif;
   background: #1a3329;
   color: #e6f0ec;
   margin: 0;
   padding: 2rem;
 }
 header h1 { margin-bottom: 0.2rem; }
-.subtitle { color: #245247; margin-top: 0; }
+.subtitle { color: #9ac0ad; margin-top: 0; }
 
 .cards {
   display: flex;
